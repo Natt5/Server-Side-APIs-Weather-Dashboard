@@ -22,3 +22,17 @@
 .weather-hr {
     border-top-color: rgb(114,114,114);
 }
+
+#today {
+    border: 1px solid rgb(200,200,200) !important;
+    color: darkgray;
+}
+
+#today h2, #today p {
+    color:rgb(114,114,114);
+}
+
+.card.text-bg-dark {
+    background-color: rgb(182,182,182) !important;
+    border: none;
+}

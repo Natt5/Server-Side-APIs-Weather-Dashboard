@@ -1,0 +1,24 @@
+.weather-header {
+    background-color: darkgray !important;
+}
+
+#form-heading {
+    color: rgb(114,114,114);
+}
+
+#search-input::placeholder {
+    color: rgb(182,182,182);
+}
+
+#search-button {
+    background-color: #ffbe98;
+    border: none;
+}
+
+#search-button:hover, #search-button:active {
+    background-color: #ff6811;
+}
+
+.weather-hr {
+    border-top-color: rgb(114,114,114);
+}

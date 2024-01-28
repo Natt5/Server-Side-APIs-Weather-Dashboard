@@ -13,6 +13,11 @@ document.getElementById('search-form').addEventListener('submit', function(event
     }
 });
 
+function fetchWeatherData(city) {
+    fetchCurrentWeather(city);
+    fetchForecast(city);
+}
+
 //function that fetches the current weather in the city
 
 function fetchCurrentWeather(city) {

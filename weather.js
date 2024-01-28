@@ -12,3 +12,26 @@ document.getElementById('search-form').addEventListener('submit', function(event
         displaySearchHistory();
     }
 });
+
+//function that fetches the current weather in the city
+
+function fetchCurrentWeather(city) {
+
+    //inserting API here
+    const apiKey = 'fb9672b35cbc85ae3baf12fecedeb034';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Current weather data not found');
+        }
+        return response.json();
+    })
+    .then(data => {
+        updateCurrentWeather(data, city);
+    })
+    .catch(error => {
+        console.error('Error fetching current weather:', error);
+    });
+}

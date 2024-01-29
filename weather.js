@@ -64,22 +64,58 @@ function updateCurrentWeather(data, city) {
 //fetching the 5 days forecast
 function fetchForecast(city) {
 
-const apiKey = 'fb9672b35cbc85ae3baf12fecedeb034';
-const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+    const apiKey = 'fb9672b35cbc85ae3baf12fecedeb034';
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
 
-fetch(url)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Forecast data not found.');
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Forecast data not found.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            updateForecastData(data);
+        })
+        .catch(error => {
+            console.error('Error fetching forecast data:', error);
+        });
+
+        //to update the forecast in the html
+
+        function updateForecastData(data) {
+            const forecastContainer = document.getElementById('forecast');
+            forecastContainer.innerHTML = ''; // Clear previous forecast
+        
+            let nextDayIndex = data.list.findIndex(forecast => {
+                const now = new Date();
+                const forecastDate = new Date(forecast.dt * 1000);
+                return forecastDate.getDate() !== now.getDate();
+            });
+        
+            data.list.forEach((forecast, index) => {
+                if (index >= nextDayIndex && (index - nextDayIndex) % 8 === 0) {
+                    const dayCard = document.createElement('div');
+                    dayCard.className = 'col';
+                    const date = new Date(forecast.dt * 1000);
+                    const ukDate = date.toLocaleDateString('en-GB');
+                    const iconUrl = `http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`;
+        
+                    dayCard.innerHTML = `
+                        <div class="card text-bg-dark h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">${ukDate}</h5>
+                                <img src="${iconUrl}" alt="${forecast.weather[0].description}" class="weather-icon" />
+                                <p class="card-text">Temp: ${forecast.main.temp.toFixed(1)}°C</p>
+                                <p class="card-text">Humidity: ${forecast.main.humidity}%</p>
+                                <p class="card-text">Wind: ${forecast.wind.speed.toFixed(1)} m/s</p>
+                            </div>
+                        </div>
+                    `;
+                    forecastContainer.appendChild(dayCard);
+                }
+            });
         }
-        return response.json();
-    })
-    .then(data => {
-        updateForecastData(data);
-    })
-    .catch(error => {
-        console.error('Error fetching forecast data:', error);
-    });
 }
 
 //saving search history here

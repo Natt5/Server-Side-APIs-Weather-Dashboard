@@ -102,3 +102,5 @@ function displaySearchHistory() {
         historyContainer.appendChild(cityEl);
     });
 }
+
+window.onload = displaySearchHistory;

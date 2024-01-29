@@ -73,3 +73,13 @@ fetch(url)
     });
 }
 
+//saving search history here
+
+function saveSearchHistory(city) {
+    let searches = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    if (!searches.includes(city)) {
+        searches.unshift(city);
+        searches = searches.slice(0, 5);
+        localStorage.setItem('searchHistory', JSON.stringify(searches));
+    }
+}

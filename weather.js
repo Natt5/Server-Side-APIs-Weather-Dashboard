@@ -1,14 +1,19 @@
 // console.log('js is loaded');
 
-//event listener to be aable to submit the form
+//to capitalise displayed cities
+
+function capitalize(str) {
+    return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+}
+
+//event listener to be able to submit the form
 
 document.getElementById('search-form').addEventListener('submit', function(event) {
     event.preventDefault();
-
-    const city = document.getElementById('search-input').ariaValueMax.trim();
+    const city = document.getElementById('search-input').value.trim();
     if (city) {
         fetchWeatherData(city);
-        saveSearchHistory (city);
+        saveSearchHistory(city);
         displaySearchHistory();
     }
 });
@@ -27,23 +32,26 @@ function fetchCurrentWeather(city) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
     fetch(url)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Current weather data not found');
-        }
-        return response.json();
-    })
-    .then(data => {
-        updateCurrentWeather(data, city);
-    })
-    .catch(error => {
-        console.error('Error fetching current weather:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Current weather data not found.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            updateCurrentWeather(data, city);
+        })
+        .catch(error => {
+            console.error('Error fetching current weather:', error);
+        });
 }
+
 
 function updateCurrentWeather(data, city) {
     const ukDate = new Date().toLocaleDateString('en-GB');
-    document.getElementById('city-name'.textContent = `Today in ${city}, ${country}`);
+    const formattedCity = capitalize(city);
+    const country = data.sys.country;
+    document.getElementById('city-name').textContent = `Today in ${formattedCity}, ${country}`;
     document.getElementById('current-date').textContent = ukDate;
     document.getElementById('temperature').textContent = `Temperature: ${data.main.temp.toFixed(1)}°C`;
     document.getElementById('humidity').textContent = `Humidity: ${data.main.humidity}%`;
@@ -51,6 +59,7 @@ function updateCurrentWeather(data, city) {
     document.getElementById('weather-icon').src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
     document.getElementById('weather-icon').style.display = 'block';
 }
+
 
 //fetching the 5 days forecast
 function fetchForecast(city) {

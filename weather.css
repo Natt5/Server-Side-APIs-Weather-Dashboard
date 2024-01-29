@@ -23,6 +23,23 @@
     border-top-color: rgb(114,114,114);
 }
 
+#history .list-group-item {
+    background-color: rgb(182, 182, 182);
+    color: white;
+    border: none;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 10px;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+#history .list-group-item:hover {
+    background-color: #ffbe98;
+}
+
 #today {
     border: 1px solid rgb(200,200,200) !important;
     color: darkgray;

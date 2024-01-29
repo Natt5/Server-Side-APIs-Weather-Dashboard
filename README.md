@@ -23,11 +23,7 @@ Responsive Design: Ensures a seamless experience across various devices and scre
 
 ### Technologies Used
 
-HTML
-CSS
-JavaScript
-OpenWeatherMap API
-Bootstrap
+HTML,CSS, JavaScript, OpenWeatherMap API, Bootstrap
 
 
 ## User Story
@@ -42,7 +38,7 @@ To use the Weather Dashboard, simply enter the name of a city into the search in
 
 ### Deployment
 
-This application is deployed at a live URL and is accessible for public use.
+This application is deployed at a live URL and is accessible for public use:
 
 [Link to the deployed Weather Dashboard Application]()
 

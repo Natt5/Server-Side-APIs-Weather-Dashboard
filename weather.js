@@ -83,3 +83,22 @@ function saveSearchHistory(city) {
         localStorage.setItem('searchHistory', JSON.stringify(searches));
     }
 }
+
+//to display searched history here 
+
+function displaySearchHistory() {
+    const searches = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    const historyContainer = document.getElementById('history');
+    historyContainer.innerHTML = '';
+
+    searches.forEach(city => {
+        const cityEl = document.createElement('button');
+        cityEl.textContent = city;
+        cityEl.classList.add('list-group-item', 'list-group-item-action');
+        cityEl.addEventListener('click', () => {
+            document.getElementById('forecast').innerHTML = 'Loading...';
+            fetchWeatherData(city); // Fetch both current weather and forecast
+        });
+        historyContainer.appendChild(cityEl);
+    });
+}

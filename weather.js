@@ -71,6 +71,8 @@ document.getElementById(
     "weather-icon"
 ).src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
 document.getElementById("weather-icon").style.display = "block";
+
+document.getElementById('today').style.display = 'block'; //to hide/show display upon refresh
 }
 
 //fetching the 5 days forecast
@@ -134,6 +136,7 @@ function updateForecastData(data) {
         forecastContainer.appendChild(dayCard);
     }
     });
+    document.getElementById('forecast').style.display = 'flex';//new addition to hide/show upon refresh 
 }
 }
 

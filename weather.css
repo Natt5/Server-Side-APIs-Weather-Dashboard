@@ -40,6 +40,10 @@
     background-color: #ffbe98;
 }
 
+#today, #forecast {
+    display: none;
+}
+
 #today {
     border: 1px solid rgb(200,200,200) !important;
     color: darkgray;

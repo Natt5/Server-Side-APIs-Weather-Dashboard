@@ -40,7 +40,7 @@ To use the Weather Dashboard, simply enter the name of a city into the search in
 
 This application is deployed at a live URL and is accessible for public use:
 
-[Link to the deployed Weather Dashboard Application]()
+[Link to the deployed Weather Dashboard Application](https://natt5.github.io/challenge8-server-api-weather-dashboard/)
 
 ![Screenshot of Weather Dashboard](./assets/weather-dashboard-screen.png)
 
